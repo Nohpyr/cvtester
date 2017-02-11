@@ -39,7 +39,7 @@ bool Target::getType() {
   if (edgeL != edgeR) {
     return true;
   }
-if (getHeight() < getWidth()) {
+if (edgeL == edgeR) {
     return false;
   }
 }

@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/option16pi/
-./cv-2015/build/src/cv_2015 -d 0 --headless &
-cd NetworkTableClient
+cd /home/pi/
+./Documents/teststuff/cvtester/build/src/cv-2017 -d 0  &
+cd Documents/teststuff/cvtester/ntable
 java NTable

@@ -96,8 +96,6 @@ int main(int argc, char* argv[])
 	      std::cout << "Image Processed by Target Detector" << std::endl;
       	}
 
-        bool foundGear = false;
-        bool foundBoiler = false;
         std::cout<<"right"<<std::endl;
 
         if (targetG != NULL || targetB != NULL) 
@@ -106,33 +104,14 @@ int main(int argc, char* argv[])
 
             if(targetG != NULL) 
 			{
-            	foundGear = targetG -> getType();
             	std::cout << "Got Type Gears: " << foundGear << std::endl;
-				if(foundGear)
-				{
-            		foundGear = true;
-				}
-				else
-				{
-					foundGear = false;
-				}
-				//foundGear = true;
+				foundGear = true;
         	}
 
         	if(targetB != NULL) 
 			{
-            	foundBoiler = targetB -> getType();
          		std::cout << "Got Type Boiler: " << foundBoiler << std::endl;
-         		if(foundBoiler)
-				{
-            		foundBoiler= true;
-				}
-				else
-
-				{
-					foundBoiler = false;
-				}
-				//foundBoiler = true; 
+         		foundBoiler = true; 
             }
 
   	  		std::cout <<"About to check the value of foundTarget" << std::endl;
@@ -242,7 +221,7 @@ int main(int argc, char* argv[])
   				cv::putText(background, azi, cv::Point(50,400),
   				cv::FONT_HERSHEY_COMPLEX_SMALL, 2, cv::Scalar(0, 255, 0),1);
   				// for background
-			    if (config.getIsHeadless() == 0)
+			    if (config.getIsHeadless()==0)
   				imshow("General", background);
 
   		    	if (config.getIsNetworking())
@@ -279,7 +258,7 @@ int main(int argc, char* argv[])
 		    //refresh loop
  	   }
 	  GaussianBlur(image,image,Size(3,3),31);
-	    if (config.getIsHeadless() == 0)
+	    if (config.getIsHeadless()==0)
 	  	imshow("Live Video Feed", image);
     }
     return 0;
