@@ -1,3 +1,4 @@
+
 //True=gears False=boiler
 #include <opencv2/opencv.hpp>
 #include <boost/lexical_cast.hpp>
@@ -52,6 +53,7 @@ int main(int argc, char* argv[])
     cv::namedWindow("General", cv::WINDOW_NORMAL);
     
 	int ping = 1;
+	
     while(cv::waitKey(30) != 27)
     {
 		cv::Mat background(Size(1000,1000), CV_8UC1, Scalar(255, 255, 255 ));
@@ -95,7 +97,9 @@ int main(int argc, char* argv[])
       	if(config.getIsDebug()){
 	      std::cout << "Image Processed by Target Detector" << std::endl;
       	}
-
+      	bool foundGear = false;
+		bool foundBoiler = false;
+	
         std::cout<<"right"<<std::endl;
 
         if (targetG != NULL || targetB != NULL) 
@@ -104,12 +108,14 @@ int main(int argc, char* argv[])
 
             if(targetG != NULL) 
 			{
+				foundGear = targetG -> getType();
             	std::cout << "Got Type Gears: " << foundGear << std::endl;
 				foundGear = true;
         	}
 
         	if(targetB != NULL) 
 			{
+			    foundBoiler = targetB -> getType();
          		std::cout << "Got Type Boiler: " << foundBoiler << std::endl;
          		foundBoiler = true; 
             }
@@ -180,7 +186,7 @@ int main(int argc, char* argv[])
   	          	}
   			    //information to send (Networking)
   	        }
-  		    if(!foundBoiler)
+  		    /*if(foundBoiler)
   			{
 				String boiler = "true;";
   				std::cout <<"Boiler was found " << std::endl;
@@ -239,7 +245,7 @@ int main(int argc, char* argv[])
   					std::cout << "Azimuth (Boiler): " << boilerAzimuth << std::endl;
   				}
 
-  			}
+  			}*/
   			else
   			{
   				if (config.getIsNetworking())
